@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Facebook</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script>
+	var facebook = angular.module('Facebook', []);
+	//defining the login controller
+	facebook.controller('login', function($scope, $http) {
+	
+		$scope.submit = function() {
+			
+			var email = $scope.email;
+			var password = $scope.password;
+			
+			$http.post('/checkLogin/'+email+'/'+password).
+			
+			then(function(result) {
+			  console.log(result.data.statusCode);
+				if(result.data.statusCode==200){
+				window.location.assign("/home");
+				}
+				else{
+				alert(result.data.msg);
+				}
+				
+				
+			}),function(error) {
+				alert("error");
+			};
+		};
+	
+	
+	 $scope.signup =  function() {
+             console.log("a m in sing up");
+             var gender = $("input:radio[name='gender']:checked").val();   
+             console.log(gender);                      
+             var dob = $("#dob").val();
+             var firstname=$scope.firstname;
+             var lastname=$scope.lastname;
+             var email=$scope.email;
+             var password=$scope.password;
+             $http.post('/signup/'+email+'/'+firstname+'/'+lastname+'/'+password+'/'+gender+'/'+dob).
+			
+			then(function(result) {
+			  console.log(result.data.statusCode);
+				if(result.data.statusCode==200){
+				window.location.assign("/home");
+				}
+				else{
+				alert("Email already exists. Please try other one");
+				}
+				
+				
+			}),function(error) {
+				alert("error");
+			};
+		};
+	
+             
+          });
+	
+	
+
+</script>
+</head>
+<body ng-app="Facebook">
+
+<div class="wrapper" >
+    <div class="box">
+        <div class="row">
+		
+              
+                      
+          <div class="navbar navbar-default navbar-static-top navbar-transparent" style="background-color: #3B5999">  
+                    <div class="navbar-header" style="margin-left:100px; padding-right:200px;">
+                      
+                      <a href="/" class="navbar-brand logo"><h1><strong>facebook</strong></h1></a>
+                  	</div>
+                  	<nav class="collapse navbar-collapse" role="navigation">
+                    <form ng-controller="login" class="navbar-form navbar-right"  name="loginForm" id="loginForm" ng-submit="submit();">
+				<table cellspacing="0" role="presentation">
+					<tbody>
+						<tr>
+							<td>
+					        	<label for="email" style="font-weight:normal;font-size:12px;color:#fff;">Email or Phone</label>
+					        </td>
+					        <td></td>
+					        <td>
+					        	<label for="pass" style="font-weight:normal;font-size:12px;color:#fff;">Password</label>
+					        </td>
+					        <td></td>
+					        <td></td>
+						</tr>
+						<tr height="2">
+							<td>
+									<input type="email" id="emailLogin" class="inputtext" name="email" ng-model="email"  required>
+							
+							</td>
+							<td>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+							</td>
+							<td>
+									<input type="password" id="passwordLogin" class="inputtext" name="password" ng-model="password" required>
+									<!--<strong ng-hide="password_empty">Password is empty</strong>-->
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td>
+								<label class="loginButton" id="loginButton" >
+								<input type="submit" class="loginButtonHomepage" value="Log In" ng-disabled="loginForm.$invalid"/>
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox"/>
+								<label style="font-weight:normal;font-size:12px;color:#9daccb;">Keep me logged in</label>
+							</td>
+							<td>
+								
+							</td>
+							<td>
+								<a href="" style="font-weight:normal;font-size:12px;color:#9daccb;">Forgot your password?</a>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+						 <tr>
+          
+          <td> &nbsp&nbsp&nbsp&nbsp&nbsp<span style="color:red" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+              <span ng-show="loginForm.email.$error.required">Email is required.</span>
+              <span ng-show="loginForm.email.$error.email">Invalid email address.</span>
+              </span> 
+              
+               <span style="color:red" ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+              <span ng-show="loginForm.password.$error.required">Password is required.</span>
+               </span>
+               </td>
+          </tr>
+						
+						</tbody>
+					</table>
+				</form>	
+				
+
+					</nav>
+           </div>
+                
+            
+            <!-- main right col -->
+            <div class="column col-sm-12 col-xs-11" id="main">
+                
+          
+              
+                <div class="padding">
+                    <div class="full col-sm-12">
+                      
+                        <!-- content -->                      
+                      	<div class="row">
+                          
+                         <!-- main col left --> 
+                         <div class="col-sm-7">
+                         <div class="media">
+  <h3><strong>Connect with Friends and the World around on Facebook</strong></h3>
+  
+                                 <img src="img/worldmap.png" class="img-responsive" />
+</div>
+                                                     </div>
+                          
+                          <!-- main col right -->
+                          <div class="col-sm-5">
+                               
+                                <div class="_58mf">
+<div id="reg_box" class="registration_redesign">
+<h2><strong>Sign up</strong></h2>
+<h4 style="font-weight:normal;" class="loginpageText">It's Free and always will be</h4>
+			<div style="width:399px">
+				<form  id="signupForm" ng-controller="login" >
+					<input type="text" class="form-control" style="width:44%;display:inline" name="firstname" id="firstname" ng-model="firstname" placeholder="First Name">&nbsp;&nbsp;&nbsp;
+					<input type="text" class="form-control" style="width:44%;display:inline" name="lastName" id="lastName" ng-model="lastname" placeholder="Last Name"><div><br/></div>
+					<input type="text" class="form-control" name="email" id="email" ng-model="email" placeholder="Email" style="width:370px">
+					<div><br/></div><input type="text" class="form-control" name="confirmEmail" id="confirmemail" ng-model="confirmEmail" placeholder="Re-enter email" style="width:370px">
+					<div><br/>
+					<input type="password" class="form-control" name="signupPassword" id="signupPassword" placeholder="New Password" ng-model="password" style="width:370px"><br/>
+					<input  type="date" placeholder="Click to choose DOB"  class="form-control" id="dob" ng-model="dob" required><br/>
+					</div>
+					
+				<div>
+					<br/><input type="radio"  name="gender" id="gender" value="Male" checked="checked"/>Male
+						<input type="radio" name="gender"  id="gender" value="female"/>Female<br/>
+				</div><br/>
+				
+				<div>
+					<label class="loginButton">
+						<input type="button" ng-click="signup()" class="signupButton" value="Sign Up" style="width:200px"/>
+					</label>
+				</div>
+				</form>
+				
+			</div>
+		
+</div>
+									 
+									 </div>
+									 
+                                      
+
+                            
+                          </div>
+                       </div><!--/row-->
+                      
+                        <div class="row">
+                          <div class="col-sm-6">
+                             </div>
+                        </div>
+                      
+                        <div class="row" id="footer">    
+                          <div class="col-sm-6">
+                            
+                          </div>
+                          <div class="col-sm-6">
+                           
+                          </div>
+                        </div>
+                      
+                      <hr>
+                      
+                      <h4 class="text-center">
+                      <a href="http://bootply.com/96266" target="ext"></a>
+                      </h4>
+                        
+                      <hr>
+                        
+                      
+                    </div><!-- /col-9 -->
+                </div><!-- /padding -->
+            </div>
+            <!-- /main -->
+          
+        </div>
+    </div>
+</div>
+
+
+	 
+	 	
+	 
+</body>
+</html>

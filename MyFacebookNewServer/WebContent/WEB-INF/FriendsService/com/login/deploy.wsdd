@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FriendsService WSDL service -->
+
+  <service name="Friends" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://login.com"/>
+      <parameter name="wsdlServiceElement" value="FriendsService"/>
+      <parameter name="schemaQualified" value="http://login.com"/>
+      <parameter name="wsdlServicePort" value="Friends"/>
+      <parameter name="className" value="com.login.Friends"/>
+      <parameter name="wsdlPortType" value="Friends"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://login.com" xmlns:retNS="http://login.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="acceptRequest" qname="operNS:acceptRequest" returnQName="retNS:acceptRequestReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://login.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:uEmail" type="tns:string"/>
+        <parameter xmlns:pns="http://login.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fEmail" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://login.com" xmlns:retNS="http://login.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addFriend" qname="operNS:addFriend" returnQName="retNS:addFriendReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://login.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:uEmail" type="tns:string"/>
+        <parameter xmlns:pns="http://login.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fEmail" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://login.com" xmlns:retNS="http://login.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getPendingRequests" qname="operNS:getPendingRequests" returnQName="retNS:getPendingRequestsReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://login.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="acceptRequest getPendingRequests addFriend"/>
+
+  </service>
+</deployment>

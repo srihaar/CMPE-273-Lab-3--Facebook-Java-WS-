@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://login.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://login.com" xmlns:intf="http://login.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://login.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getNewsFeed">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getNewsFeedResponse">
+    <complexType>
+     <sequence>
+      <element name="getNewsFeedReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="postFeed">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="desc" type="xsd:string"/>
+      <element name="firstName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="postFeedResponse">
+    <complexType>
+     <sequence>
+      <element name="postFeedReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getNewsFeedResponse">
+
+      <wsdl:part element="impl:getNewsFeedResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNewsFeedRequest">
+
+      <wsdl:part element="impl:getNewsFeed" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="postFeedResponse">
+
+      <wsdl:part element="impl:postFeedResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="postFeedRequest">
+
+      <wsdl:part element="impl:postFeed" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="NewsFeed">
+
+      <wsdl:operation name="getNewsFeed">
+
+         <wsdl:input message="impl:getNewsFeedRequest" name="getNewsFeedRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getNewsFeedResponse" name="getNewsFeedResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="postFeed">
+
+         <wsdl:input message="impl:postFeedRequest" name="postFeedRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:postFeedResponse" name="postFeedResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="NewsFeedSoapBinding" type="impl:NewsFeed">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getNewsFeed">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNewsFeedRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNewsFeedResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="postFeed">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="postFeedRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="postFeedResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="NewsFeedService">
+
+      <wsdl:port binding="impl:NewsFeedSoapBinding" name="NewsFeed">
+
+         <wsdlsoap:address location="http://localhost:8080/MyFacebookNewServer/services/NewsFeed"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,125 @@
+
+
+      
+     <br><br><br>
+      <div class="padding">
+        <img align="center" height="150px" src="/img/blue.jpg" style="margin-left:30px;" width="90%">        
+      </div>
+      <div class="padding">
+          <div class="full col-sm-9">
+              <div class="fb-profile">
+                  <img align="left" alt="Profile image example" class="fb-image-profile thumbnail" src="/img/user.png"><br>
+                  <p class="lead">{{profile[0].firstname}}&nbsp;{{profile[0].lastname}}</p>
+                  <div ng-show="status5">
+                  <p><button type="btn btn-info sm" ng-click="update()">Update Info</button></p>
+                  </div>
+                  <div ng-show="status1">
+                  <p><button type="btn btn-info sm" ng-click="addFriend(profile[0].email)" ng-disabled="add">{{addtxt}}</button></p>
+                  </div>
+                  <div ng-show="status2">
+                  <p><button type="btn btn-info sm" ng-disabled="true">Friend Request Sent</button></p>
+                  </div>
+                  <div ng-show="status3">
+                   <td ng-hide="hideApprove"><button ng-click='acceptRequest(profile[0].email)' class="btn btn-info sm" ng-disabled='approve' >{{btxt}}</span>
+        </button></td>
+         </div>
+         <div ng-show="status4">
+         <p><button type="btn btn-info sm" ng-disabled="true">Friends</button></p>
+         </div>
+              </div>
+          </div>
+      </div>
+      <div class="padding">
+        <div class="padding">
+            <div class="fb-profile">
+                <!-- <div class="full col-sm-9"> -->
+                    <!-- content -->
+
+                    <div class="row">
+                        <!-- main col left -->
+
+                        <div class="col-sm-3" style="margin-left:50px;">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p class="lead">About</p>
+                                    <p>Gender: {{profile[0].gender}}</p>
+                                    <p>Birthday: {{profile[0].dob}}</p>
+                                    <p>Email: {{profile[0].email}}</p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="margin-left:20px;">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p class="lead">More Details</p>
+
+                                    <p>Interests : Playing,TV</p>
+                                    <p>Sports : Cricket</p>
+                                    <p>Education : SanJose State University</p>
+                                    <p>LifeEvents: Great</p>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- content -->
+
+                    <div class="row">
+                        <!-- main col left -->
+
+                        <div class="col-sm-3" style="margin-left:50px;">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p class="lead" >Friends</p>
+                                    <p ng-show="friends1.length==0 && friends2.length==0">No Friends to Show</p>
+                                    <p ng-show="friends1.length>0||friends2.length>0">You have {{friends1.length+friends2.length}}friends</p>
+                                    <table ng-show="friends1.length > 0">
+                                      <thead>
+                                      </thead>
+                                      <tbody>
+                                        <tr ng-repeat = "friend in friends1">
+                                          <td><p><img height="28px" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px"></p></td>
+                                          <td><a ng-click="viewProfile(friend.email)">&nbsp;&nbsp;{{friend.firstname}}&nbsp;&nbsp;{{friend.lastname}}</a></td>
+                                        </tr>
+                                      </tbody>
+                                    </table> 
+                                    
+                                     <table ng-show="friends2.length > 0">
+                                      <thead>
+                                      </thead>
+                                      <tbody>
+                                        <tr ng-repeat = "friend in friends2">
+                                          <td><p><img height="28px" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px"></p></td>
+                                          <td><a ng-click="viewProfile(friend.email)">&nbsp;&nbsp;{{friend.firstname}}&nbsp;&nbsp;{{friend.lastname}}</a></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>                                                                          
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <!-- main col left -->
+
+                        <div class="col-sm-3" style="margin-left:50px;">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p class="lead">Urbanization</p>
+
+                                    <p>45 Followers, 13 Posts</p>
+
+                                    <p><img height="28px" src=
+                                    "https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28"
+                                    width="28px"></p>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,29 @@
+ <div class="container" >
+        <strong ng-show="(pendingRequests.length==0)">No Pending Requests</strong>
+        <table ng-show="pendingRequests.length>0">
+         
+    <tbody><br><br><br><br>
+      
+      
+      
+      <tr><td><strong><h3>Pending Friend Requests</h3></strong></td></tr>
+      
+      <tr ng-repeat="request in pendingRequests">
+      
+        <td><a type="button" ng-click="viewPendingProfile(request.DriverID)"><h4>{{request.firstname}}&nbsp&nbsp&nbsp{{request.firstname}}</h4></a></td>
+        <td ng-hide="request.hideApprove"><button ng-click='approveRequest(request.DriverID,$index)' class="btn btn-success" ng-disabled='request.approve' >Approve<span ng-if="request.approve"> Success</span>
+        </button></td>
+        
+        <td ng-hide="request.hideReject"><button ng-click='rejectRequest(request.DriverID,$index)' class="btn btn-danger" ng-disabled='request.reject' >Reject<span ng-if="request.reject"> Success</span>
+        </button></td>
+      </tr>
+    <tr><td>
+    
+     </tr></td>
+    </tbody>
+  </table>
+  </div>
+  
+  
+  
+        

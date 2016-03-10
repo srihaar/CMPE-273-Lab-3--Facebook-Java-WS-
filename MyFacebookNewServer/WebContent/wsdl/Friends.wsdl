@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://login.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://login.com" xmlns:intf="http://login.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://login.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="acceptRequest">
+    <complexType>
+     <sequence>
+      <element name="uEmail" type="xsd:string"/>
+      <element name="fEmail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="acceptRequestResponse">
+    <complexType>
+     <sequence>
+      <element name="acceptRequestReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addFriend">
+    <complexType>
+     <sequence>
+      <element name="uEmail" type="xsd:string"/>
+      <element name="fEmail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addFriendResponse">
+    <complexType>
+     <sequence>
+      <element name="addFriendReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPendingRequests">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPendingRequestsResponse">
+    <complexType>
+     <sequence>
+      <element name="getPendingRequestsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getPendingRequestsRequest">
+
+      <wsdl:part element="impl:getPendingRequests" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addFriendResponse">
+
+      <wsdl:part element="impl:addFriendResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="acceptRequestResponse">
+
+      <wsdl:part element="impl:acceptRequestResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPendingRequestsResponse">
+
+      <wsdl:part element="impl:getPendingRequestsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addFriendRequest">
+
+      <wsdl:part element="impl:addFriend" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="acceptRequestRequest">
+
+      <wsdl:part element="impl:acceptRequest" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Friends">
+
+      <wsdl:operation name="acceptRequest">
+
+         <wsdl:input message="impl:acceptRequestRequest" name="acceptRequestRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:acceptRequestResponse" name="acceptRequestResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addFriend">
+
+         <wsdl:input message="impl:addFriendRequest" name="addFriendRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addFriendResponse" name="addFriendResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPendingRequests">
+
+         <wsdl:input message="impl:getPendingRequestsRequest" name="getPendingRequestsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPendingRequestsResponse" name="getPendingRequestsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="FriendsSoapBinding" type="impl:Friends">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="acceptRequest">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="acceptRequestRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="acceptRequestResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addFriend">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addFriendRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addFriendResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPendingRequests">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPendingRequestsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPendingRequestsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="FriendsService">
+
+      <wsdl:port binding="impl:FriendsSoapBinding" name="Friends">
+
+         <wsdlsoap:address location="http://localhost:8080/MyFacebookNewServer/services/Friends"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

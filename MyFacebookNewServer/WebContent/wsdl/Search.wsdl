@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://login.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://login.com" xmlns:intf="http://login.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://login.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getSearchResults">
+    <complexType>
+     <sequence>
+      <element name="searchTerm" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSearchResultsResponse">
+    <complexType>
+     <sequence>
+      <element name="getSearchResultsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getSearchResultsResponse">
+
+      <wsdl:part element="impl:getSearchResultsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSearchResultsRequest">
+
+      <wsdl:part element="impl:getSearchResults" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Search">
+
+      <wsdl:operation name="getSearchResults">
+
+         <wsdl:input message="impl:getSearchResultsRequest" name="getSearchResultsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSearchResultsResponse" name="getSearchResultsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SearchSoapBinding" type="impl:Search">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSearchResults">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSearchResultsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSearchResultsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SearchService">
+
+      <wsdl:port binding="impl:SearchSoapBinding" name="Search">
+
+         <wsdlsoap:address location="http://localhost:8080/MyFacebookNewServer/services/Search"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

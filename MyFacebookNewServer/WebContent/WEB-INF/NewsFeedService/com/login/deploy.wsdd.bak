@@ -1,0 +1,34 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from NewsFeedService WSDL service -->
+
+  <service name="NewsFeed" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://login.com"/>
+      <parameter name="wsdlServiceElement" value="NewsFeedService"/>
+      <parameter name="schemaQualified" value="http://login.com"/>
+      <parameter name="wsdlServicePort" value="NewsFeed"/>
+      <parameter name="className" value="com.login.NewsFeedSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="NewsFeed"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getNewsFeed" qname="operNS:getNewsFeed" xmlns:operNS="http://login.com" returnQName="retNS:getNewsFeedReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="postFeed" qname="operNS:postFeed" xmlns:operNS="http://login.com" returnQName="retNS:postFeedReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:desc" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:firstName" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="postFeed getNewsFeed"/>
+
+  </service>
+</deployment>

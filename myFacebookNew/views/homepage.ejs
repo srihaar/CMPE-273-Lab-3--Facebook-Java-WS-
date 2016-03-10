@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html ng-app="fbModule">
+<head>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	
+		<title>Facebook</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+     <script src="/controller/fbController.js"></script>
+     <script src= "/controller/angular-route.js"></script>
+  <script src = "/controller/angular-ui-router.min.js"></script>
+  <meta charset="utf-8">
+    
+    
+   <link href="/stylesheets/profile.css" rel="stylesheet">
+   
+
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+<body ng-controller="fbController">
+	
+<div class="wrapper">
+    <div class="box">
+        <div class="row">
+              <!-- top nav -->
+              	<div class="navbar navbar-default navbar-fixed-top navbar-transparent" style="background-color: #3B5999">  
+                    <div class="navbar-header" style="margin-left:50px;">
+                    
+                      <a href="/" class="navbar-brand logo">f</a>
+                  	</div>
+                  	<nav class="collapse navbar-collapse" role="navigation">
+                    <form class="navbar-form navbar-left">
+                        <div class="input-group input-group-sm" style="max-width:960px;">
+                          <input type="search" class="form-control" placeholder="Search" size="80" name="searchTerm" id="searchTerm" ng-model="searchTerm">
+                          <div class="input-group-btn">
+                            <button class="btn btn-default" data-target="#search" ng-click="search()" data-toggle="modal"><i class="glyphicon glyphicon-search"></i></button>
+                          </div>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav">
+                      <li>
+                        <a ui-sref="feed"><i class="glyphicon glyphicon-home"></i> Home</a>
+                      </li>
+              
+                      <li>
+                        <a ui-sref="myProfile"><span class="badge">Profile</span></a>
+                      </li>
+                      
+                      <li>
+                        <a><span class="badge" data-target="#friends" ng-click="getPendingRequests()" data-toggle="modal">Notifications</span></a>
+                      </li>
+                    
+
+                      <li class="nav navbar-nav navbar-right"><a ng-click="logout()">Logout</a></li>
+                       
+                      
+                    </ul>
+                  	</nav>
+                </div>
+                <!-- /top nav -->
+              
+                
+       
+            <div class="column col-md-3 col-xs-1 sidebar-offcanvs" id="sidebar">
+              
+              	
+            </div>
+			<div class="col-md-7">
+                 <div ui-view="newsFeed"></div>
+                 <div ui-view="profileView"></div>
+                 <div ui-view="myProfileView"></div>
+                 <div ui-view="friendsList"></div>	
+                
+           
+                      
+                    </div>
+                    
+              <!-- search modal -->      
+      <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="lstatus" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              <h3 class="modal-title">Search results</h3>
+            </div>
+            <div class="modal-body">
+              <p ng-show="userResults.length == 0">Sorry, no matches found.Please try again</p>
+                <div ng-show = "(userResults.length > 0)">
+                  <h4>Matching user profiles</h4>
+                  <table>
+                    <thead></thead>
+                    <tbody>
+                      <tr ng-repeat="profile in userResults">
+                        <td><p><img height="28px" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px"></p></td>
+                        <td><a type="button" class="btn btn-link" ng-click="viewProfile(profile.email)" data-dismiss="modal">{{profile.firstname}}&nbsp;{{profile.lastname}}</a></td>                                                                        
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+  <!-- search modal -->      
+                    
+                    
+  <!-- search modal -->      
+      <div class="modal fade" id="friends" tabindex="-1" role="dialog" aria-labelledby="lstatus" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              <h3 class="modal-title">Pending Friend Requests</h3>
+            </div>
+            <div class="modal-body">
+              <p ng-show="pendingRequests.length == 0">No Pending Requests to show</p>
+                   <table class="table" ng-show="pendingRequests.length>0">
+         
+    <tbody>
+      
+      
+      
+      
+      
+      <tr ng-repeat="request in pendingRequests">
+      
+        <td><a type="button" ng-click="viewProfile(request.email)" data-dismiss="modal"><h4>{{request.firstname}}&nbsp&nbsp&nbsp{{request.lastname}}</h4></a></td>
+        <td ng-hide="request.hideApprove"><button ng-click='acceptRequest(request.email,$index)' class="btn btn-success" ng-disabled='request.approve' >
+        Accept<span ng-if="request.approve"> Success</span>
+        </span>
+        </button></td>
+        
+        
+      </tr>
+    <tr><td>
+    
+     </tr></td>
+    </tbody>
+  </table>
+              </div>
+              
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              <h3 class="modal-title">Sent Friend Requests</h3>
+            </div>
+            <div class="modal-body">
+              <p ng-show="notifications.length == 0">No Notifications to show</p>
+                   <table  ng-show="notifications.length>0">
+         
+    <tbody>
+      
+      
+      
+      
+      
+      <tr ng-repeat="request in notifications">
+      
+        <td><a type="button" data-dismiss="modal" ng-click="viewProfile(request.email)"><h5>{{request.firstname}}&nbsp&nbsp{{request.lastname}}</h5></a></td>
+        <td>&nbsphas accepted your friend request</td>
+        
+    </tbody>
+  </table>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+  <!-- search modal --> 
+                
+
+
+
+	
+	</body>
+</html>

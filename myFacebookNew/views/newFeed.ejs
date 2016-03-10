@@ -1,0 +1,73 @@
+
+       <div class="row">
+       </div>
+       <div class="row">
+       </div>
+       <div class="row">
+       </div>
+       <div class="container">
+			<form ng-submit="submit();" id="newsfeedForm">
+				<table bgcolor="white" background-color: none;>
+				<tr>
+				</tr>
+				<tr>
+					<td><a href="" style="font-weight:bold" class="facebook_homepage_click loginpageText"><h3>Update Status</h3></a></td>
+				</tr>
+					<tr><td colspan=3><textarea class="newsfeed_textarea" rows="3" cols="50" style="width:500px" name="newsfeed" ng-model="feed" id="newsfeed" placeholder="Update Status"></textarea></td></tr>
+					<tr><td colspan=3 align="right"><input type="submit" class="postButtonNewsfeed" value="Post" /></td></tr>
+				</table>
+			</form>
+			 
+			
+			
+				<div ng-show="newsfeed1.length<=0 && newsfeed2.length<=0 && newsfeed3.length<=0 " style="height:auto,width:auto">
+					<label>No Posts to show</label>
+				</div>
+			   <div ng-show="post" class="homepage_main">
+				<table class="table">
+				   
+				   
+					<tr><td><a href=""><h4>{{firstname}}</h4></td></tr></a>
+					<tr><td><h5>{{feed}}</h5><br/></td></tr>
+					
+				</table>
+				</div>
+			
+				<div ng-show="newsfeed1.length>0" class="homepage_main">
+				<table class="table" ng-repeat="feed in newsfeed1">
+				   
+				   
+					<tr><td><a href=""><h4>{{feed.firstname}}</h4></td></tr></a>
+					<tr><td><h5>{{feed.pdesc}}</h5><br/></td></tr>
+					
+				</table>
+				</div>
+				
+				<div ng-show="newsfeed2.length>0">
+				<table class="table" ng-repeat="feed in newsfeed2">
+				   
+					<tr><td><a href=""><h4>{{feed.firstname}}</h4></td></tr></a>
+					<tr><td><h5>{{feed.pdesc}}</h5><br/></td></tr>
+					
+				</table>
+				</div>
+			<div ng-show="newsfeed3.length>0">
+				<table class="table" ng-repeat="feed in newsfeed3">
+				   
+					<tr><td><a href=""><h4>{{feed.firstname}}</h4></td></tr></a>
+					<tr><td><h5>{{feed.pdesc}}</h5><br/></td></tr>
+					
+				</table>
+				</div>
+		</div>
+		
+
+                
+          
+           
+                      
+        
+          
+
+
+
